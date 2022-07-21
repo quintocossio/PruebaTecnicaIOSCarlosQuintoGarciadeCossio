@@ -13,6 +13,12 @@
 		9E50A8602889D28500806479 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E50A85F2889D28500806479 /* Assets.xcassets */; };
 		9E50A8632889D28500806479 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E50A8612889D28500806479 /* LaunchScreen.storyboard */; };
 		9E50A86B2889D87B00806479 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E50A86A2889D87B00806479 /* HomeViewController.swift */; };
+		9E50A86D2889E4F900806479 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E50A86C2889E4F900806479 /* HistoryViewController.swift */; };
+		9E50A8712889E66B00806479 /* Cat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E50A8702889E66B00806479 /* Cat.swift */; };
+		9E50A8742889E8F400806479 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E50A8732889E8F400806479 /* APIManager.swift */; };
+		9E50A8772889F7D600806479 /* VotingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E50A8762889F7D600806479 /* VotingView.swift */; };
+		9E50A8792889FC4700806479 /* VotingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E50A8782889FC4700806479 /* VotingViewModel.swift */; };
+		9E50A87B2889FF8D00806479 /* Utilis+UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E50A87A2889FF8D00806479 /* Utilis+UIImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +30,12 @@
 		9E50A8622889D28500806479 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9E50A8642889D28500806479 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E50A86A2889D87B00806479 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		9E50A86C2889E4F900806479 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		9E50A8702889E66B00806479 /* Cat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cat.swift; sourceTree = "<group>"; };
+		9E50A8732889E8F400806479 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		9E50A8762889F7D600806479 /* VotingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingView.swift; sourceTree = "<group>"; };
+		9E50A8782889FC4700806479 /* VotingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingViewModel.swift; sourceTree = "<group>"; };
+		9E50A87A2889FF8D00806479 /* Utilis+UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Utilis+UIImageView.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +68,61 @@
 		9E50A8552889D28200806479 /* PruebaTecnicaIOSCatsApi */ = {
 			isa = PBXGroup;
 			children = (
-				9E50A8562889D28200806479 /* AppDelegate.swift */,
-				9E50A8582889D28200806479 /* SceneDelegate.swift */,
+				9E50A87C288A119300806479 /* Delegates */,
+				9E50A8722889E8E300806479 /* Networking */,
+				9E50A86F2889E65800806479 /* Model */,
+				9E50A86E2889E64D00806479 /* Controllers */,
+				9E50A8752889F7B900806479 /* Views */,
 				9E50A85C2889D28200806479 /* Main.storyboard */,
 				9E50A85F2889D28500806479 /* Assets.xcassets */,
 				9E50A8612889D28500806479 /* LaunchScreen.storyboard */,
 				9E50A8642889D28500806479 /* Info.plist */,
-				9E50A86A2889D87B00806479 /* HomeViewController.swift */,
+				9E50A87A2889FF8D00806479 /* Utilis+UIImageView.swift */,
 			);
 			path = PruebaTecnicaIOSCatsApi;
+			sourceTree = "<group>";
+		};
+		9E50A86E2889E64D00806479 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9E50A86A2889D87B00806479 /* HomeViewController.swift */,
+				9E50A86C2889E4F900806479 /* HistoryViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		9E50A86F2889E65800806479 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9E50A8702889E66B00806479 /* Cat.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9E50A8722889E8E300806479 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				9E50A8732889E8F400806479 /* APIManager.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		9E50A8752889F7B900806479 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9E50A8762889F7D600806479 /* VotingView.swift */,
+				9E50A8782889FC4700806479 /* VotingViewModel.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9E50A87C288A119300806479 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				9E50A8562889D28200806479 /* AppDelegate.swift */,
+				9E50A8582889D28200806479 /* SceneDelegate.swift */,
+			);
+			path = Delegates;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +196,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E50A8742889E8F400806479 /* APIManager.swift in Sources */,
 				9E50A8572889D28200806479 /* AppDelegate.swift in Sources */,
 				9E50A8592889D28200806479 /* SceneDelegate.swift in Sources */,
+				9E50A8792889FC4700806479 /* VotingViewModel.swift in Sources */,
+				9E50A8772889F7D600806479 /* VotingView.swift in Sources */,
+				9E50A8712889E66B00806479 /* Cat.swift in Sources */,
+				9E50A87B2889FF8D00806479 /* Utilis+UIImageView.swift in Sources */,
 				9E50A86B2889D87B00806479 /* HomeViewController.swift in Sources */,
+				9E50A86D2889E4F900806479 /* HistoryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

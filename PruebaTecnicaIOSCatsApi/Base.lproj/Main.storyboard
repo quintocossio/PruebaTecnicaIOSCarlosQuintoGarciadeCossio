@@ -18,10 +18,13 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="PlR-BG-cXt">
+                        <barButtonItem key="rightBarButtonItem" title="History" id="CDs-Ul-CE8"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-23" y="78"/>
+            <point key="canvasLocation" x="1797.1014492753625" y="-86.383928571428569"/>
         </scene>
     </scenes>
     <resources>
