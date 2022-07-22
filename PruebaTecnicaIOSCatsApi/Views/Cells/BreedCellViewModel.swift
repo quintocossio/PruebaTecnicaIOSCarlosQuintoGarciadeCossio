@@ -12,6 +12,6 @@ struct BreedCellViewModel {
     var breedName: String
     var breedImageUrl: String?
     var date: Date?
-    var isLiked: Bool?
+    var voteType: String?
     
 }

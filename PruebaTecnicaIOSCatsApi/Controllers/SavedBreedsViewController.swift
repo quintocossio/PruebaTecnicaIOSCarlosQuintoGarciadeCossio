@@ -52,13 +52,13 @@ extension SavedBreedsViewController {
     
     private func configureTableCells(with breeds: [Cat]) {
         breedCellViewModel = breeds.map({
-            BreedCellViewModel(breedName: $0.name, breedImageUrl: $0.image?.url, date: Date(), isLiked: true)
-            //TODO: Update date and isLiked
+            BreedCellViewModel(breedName: $0.name, breedImageUrl: $0.image?.url, date: $0.date, voteType: $0.voteType)
         })
     }
     
     private func loadData() {
         self.configureTableCells(with: savedBreeds)
+        print(savedBreeds)
         self.tableView.reloadData()
     }
 }

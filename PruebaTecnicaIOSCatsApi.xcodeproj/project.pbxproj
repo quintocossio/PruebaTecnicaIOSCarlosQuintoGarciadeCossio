@@ -21,6 +21,7 @@
 		9E50A87E288A40A200806479 /* SavedBreedsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E50A87D288A40A200806479 /* SavedBreedsViewController.swift */; };
 		9E50A883288A481500806479 /* BreedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E50A882288A481500806479 /* BreedCell.swift */; };
 		9E50A885288A48C900806479 /* BreedCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E50A884288A48C900806479 /* BreedCellViewModel.swift */; };
+		9EA53FAC288B1AC3004F7674 /* LocalState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA53FAB288B1AC3004F7674 /* LocalState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		9E50A87D288A40A200806479 /* SavedBreedsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedBreedsViewController.swift; sourceTree = "<group>"; };
 		9E50A882288A481500806479 /* BreedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedCell.swift; sourceTree = "<group>"; };
 		9E50A884288A48C900806479 /* BreedCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedCellViewModel.swift; sourceTree = "<group>"; };
+		9EA53FAB288B1AC3004F7674 /* LocalState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalState.swift; sourceTree = "<group>"; };
 		B33D212336C6969440111A38 /* Pods-PruebaTecnicaIOSCatsApi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PruebaTecnicaIOSCatsApi.debug.xcconfig"; path = "Target Support Files/Pods-PruebaTecnicaIOSCatsApi/Pods-PruebaTecnicaIOSCatsApi.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -95,6 +97,7 @@
 				9E50A85F2889D28500806479 /* Assets.xcassets */,
 				9E50A8612889D28500806479 /* LaunchScreen.storyboard */,
 				9E50A8642889D28500806479 /* Info.plist */,
+				9EA53FAB288B1AC3004F7674 /* LocalState.swift */,
 			);
 			path = PruebaTecnicaIOSCatsApi;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 				9E50A8592889D28200806479 /* SceneDelegate.swift in Sources */,
 				9E50A8792889FC4700806479 /* VotingViewModel.swift in Sources */,
 				9E50A8772889F7D600806479 /* VotingView.swift in Sources */,
+				9EA53FAC288B1AC3004F7674 /* LocalState.swift in Sources */,
 				9E50A8712889E66B00806479 /* Cat.swift in Sources */,
 				9E50A885288A48C900806479 /* BreedCellViewModel.swift in Sources */,
 				9E50A883288A481500806479 /* BreedCell.swift in Sources */,

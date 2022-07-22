@@ -11,6 +11,8 @@ class HomeViewController: UIViewController {
 
     var cats: [Cat] = []
     var apiManager: APIManageable = APIManager()
+    var votedCats: [Cat] = []
+    var currentIndex: Int = LocalState.currentIndex
     
     var votingView = VotingView()
     let buttonsStackView = UIStackView()
@@ -44,12 +46,12 @@ class HomeViewController: UIViewController {
     }
     
     private func fetchData() {
-        apiManager.fetchCatBreeds { result in
+        apiManager.fetchCatBreeds { [self] result in
             switch result {
                 
             case .success(let cats):
                 self.cats = cats
-                self.configureVotingView(with: cats[0])
+                self.configureVotingView(with: cats[currentIndex])
             case .failure(let error):
                 self.displayError(error)
             }
@@ -57,12 +59,45 @@ class HomeViewController: UIViewController {
     }
     
     private func reloadView() {
-        self.configureVotingView(with: cats[1])
+//        LocalState.currentIndex = LocalState.currentIndex + 1
+//        print(LocalState.currentIndex)
+//        if LocalState.currentIndex >= cats.count{
+//            print("No more breeds")
+//            return
+//        }
+//
+//        self.configureVotingView(with: cats[LocalState.currentIndex])
+        
+        
     }
     
     private func configureVotingView(with cat: Cat) {
         let vm = VotingViewModel(breedName: cat.name, breedImageUrl: cat.image?.url)
         votingView.configureView(with: vm)
+    }
+    
+    private func saveCatWith(voteType: String, date: Date) {
+        if currentIndex > cats.count{
+            print("No more breeds")
+            return
+        }
+        var cat = cats[currentIndex]
+        cat.voteType = voteType
+        cat.date = Date()
+        self.votedCats.append(cat)
+        
+        currentIndex = currentIndex + 1
+
+        if currentIndex >= cats.count{
+            print("No more breeds")
+            return
+        }
+        
+        self.configureVotingView(with: cats[currentIndex])
+        
+        LocalState.currentIndex = currentIndex
+        print("current3",currentIndex)
+        print("localstate3",LocalState.currentIndex)
     }
     
     
@@ -95,9 +130,6 @@ class HomeViewController: UIViewController {
         present(errorAlert, animated: true, completion: nil)
     }
 
-    
-
-    
 
 }
 
@@ -105,6 +137,7 @@ extension HomeViewController {
     
     private func setup() {
         navigationItem.rightBarButtonItem = savedBreedsBarButtonItem
+        
     }
     
     private func style() {
@@ -157,16 +190,19 @@ extension HomeViewController {
     
     @objc func dislikeButtonPressed(sender: UIButton) {
         print("dislike")
+        self.saveCatWith(voteType: "negative", date: Date())
+        
     }
     
     @objc func likeButtonPressed(sender: UIButton) {
         print("like")
-        self.reloadView()
+        self.saveCatWith(voteType: "positive", date: Date())
+
     }
     
     @objc func savedBreedsPressed(sender:UIButton) {
         let savedBreedsViewController = SavedBreedsViewController()
-        savedBreedsViewController.savedBreeds = cats
+        savedBreedsViewController.savedBreeds = votedCats
         self.navigationController?.pushViewController(savedBreedsViewController, animated: false)
     }
 }

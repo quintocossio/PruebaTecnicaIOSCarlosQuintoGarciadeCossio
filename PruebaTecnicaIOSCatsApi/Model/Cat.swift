@@ -28,6 +28,8 @@ struct Cat: Codable {
     let hypoallergenic: Int?
     let referenceImageID: String?
     let image: Image?
+    var date: Date?
+    var voteType:String?
 
     enum CodingKeys: String, CodingKey {
         case weight, id, name
@@ -59,6 +61,7 @@ struct Cat: Codable {
         case hypoallergenic
         case referenceImageID = "reference_image_id"
         case image
+        case date, voteType
     }
 }
 
