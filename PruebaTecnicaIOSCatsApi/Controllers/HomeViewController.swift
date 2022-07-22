@@ -17,6 +17,12 @@ class HomeViewController: UIViewController {
     let likeButton = UIButton()
     let dislikeButton = UIButton()
     
+    lazy var savedBreedsBarButtonItem: UIBarButtonItem = {
+        let barButtonItem = UIBarButtonItem(title: "Registros", style: .plain, target: self, action: #selector(savedBreedsPressed))
+        barButtonItem.tintColor = .label
+        return barButtonItem
+    }()
+    
     lazy var errorAlert: UIAlertController = {
         let alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -29,6 +35,7 @@ class HomeViewController: UIViewController {
 
         style()
         layout()
+        setup()
         
         
         fetchData()
@@ -96,6 +103,10 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController {
     
+    private func setup() {
+        navigationItem.rightBarButtonItem = savedBreedsBarButtonItem
+    }
+    
     private func style() {
         
         votingView.translatesAutoresizingMaskIntoConstraints = false
@@ -141,8 +152,7 @@ extension HomeViewController {
     }
 }
 
-//Actions Methods
-
+//MARK: - Actions Methods
 extension HomeViewController {
     
     @objc func dislikeButtonPressed(sender: UIButton) {
@@ -152,5 +162,11 @@ extension HomeViewController {
     @objc func likeButtonPressed(sender: UIButton) {
         print("like")
         self.reloadView()
+    }
+    
+    @objc func savedBreedsPressed(sender:UIButton) {
+        let savedBreedsViewController = SavedBreedsViewController()
+        savedBreedsViewController.savedBreeds = cats
+        self.navigationController?.pushViewController(savedBreedsViewController, animated: false)
     }
 }

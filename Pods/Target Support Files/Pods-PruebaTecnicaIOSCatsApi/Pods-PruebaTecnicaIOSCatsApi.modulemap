@@ -1,0 +1,6 @@
+framework module Pods_PruebaTecnicaIOSCatsApi {
+  umbrella header "Pods-PruebaTecnicaIOSCatsApi-umbrella.h"
+
+  export *
+  module * { export * }
+}

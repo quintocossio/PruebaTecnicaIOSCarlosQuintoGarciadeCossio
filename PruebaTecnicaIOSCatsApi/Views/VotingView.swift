@@ -25,10 +25,7 @@ class VotingView: UIView{
         fatalError("init(coder:) has not been implemented")
     }
     
-//    override var intrinsicContentSize: CGSize{
-//        //Default size of the view
-//        return CGSize(width: 200, height: 200)
-//    }
+
     
 }
 
@@ -66,7 +63,8 @@ extension VotingView {
             trailingAnchor.constraint(equalToSystemSpacingAfter: stackView.trailingAnchor, multiplier: 1),
             bottomAnchor.constraint(equalToSystemSpacingBelow: stackView.bottomAnchor, multiplier: 1),
             breedImage.heightAnchor.constraint(equalToConstant: 200),
-            breedImage.widthAnchor.constraint(equalToConstant: 200)
+            breedImage.widthAnchor.constraint(equalToConstant: 200),
+            
             
         ])
         
@@ -74,6 +72,7 @@ extension VotingView {
     
     func configureView(with viewModel:VotingViewModel) {
         breedLabel.text = viewModel.breedName
-        breedImage.loadFrom(URLAddress: viewModel.breedImageUrl!)
+        guard let imageUrl = viewModel.breedImageUrl, let url = URL(string: imageUrl) else { return }
+        breedImage.sd_setImage(with: url)
     }
 }
