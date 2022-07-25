@@ -11,7 +11,11 @@ struct BreedCellViewModel {
     
     var breedName: String
     var breedImageUrl: String?
-    var date: Date?
-    var voteType: String?
+    var date: Date
+    var voteType: String
+    
+    var dateFormatted:String {
+        return date.dateString
+    }
     
 }

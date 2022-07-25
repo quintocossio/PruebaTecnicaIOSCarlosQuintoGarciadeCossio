@@ -84,8 +84,7 @@ class HomeViewController: UIViewController {
         var cat = cats[currentIndex]
         cat.voteType = voteType
         cat.date = Date()
-        self.votedCats.append(cat)
-        
+        votedCats.append(cat)
         currentIndex = currentIndex + 1
 
         if currentIndex >= cats.count{
@@ -93,9 +92,17 @@ class HomeViewController: UIViewController {
             return
         }
         
-        self.configureVotingView(with: cats[currentIndex])
+        BreedStore.save(cats: votedCats) { [self] result in
+            switch result {
+            case .success(_):
+                configureVotingView(with: cats[currentIndex])
+                LocalState.currentIndex = currentIndex
+                votedCats.removeAll()
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
         
-        LocalState.currentIndex = currentIndex
         print("current3",currentIndex)
         print("localstate3",LocalState.currentIndex)
     }
@@ -148,13 +155,15 @@ extension HomeViewController {
         buttonsStackView.axis = .horizontal
         buttonsStackView.spacing = 20
         
+        let imageConfiguration = UIImage.SymbolConfiguration(textStyle: .title1)
+        
         dislikeButton.translatesAutoresizingMaskIntoConstraints = false
-        dislikeButton.setImage(UIImage(systemName: "hand.thumbsdown.fill"), for: .normal)
+        dislikeButton.setImage(UIImage(systemName: "hand.thumbsdown.fill", withConfiguration: imageConfiguration), for: .normal)
         dislikeButton.tintColor = .red
         dislikeButton.addTarget(self, action: #selector(dislikeButtonPressed), for: .touchUpInside)
         
         likeButton.translatesAutoresizingMaskIntoConstraints = false
-        likeButton.setImage(UIImage(systemName: "hand.thumbsup.fill"), for: .normal)
+        likeButton.setImage(UIImage(systemName: "hand.thumbsup.fill", withConfiguration: imageConfiguration), for: .normal)
         likeButton.tintColor = .green
         likeButton.addTarget(self, action: #selector(likeButtonPressed), for: .touchUpInside)
         
@@ -202,7 +211,6 @@ extension HomeViewController {
     
     @objc func savedBreedsPressed(sender:UIButton) {
         let savedBreedsViewController = SavedBreedsViewController()
-        savedBreedsViewController.savedBreeds = votedCats
         self.navigationController?.pushViewController(savedBreedsViewController, animated: false)
     }
 }

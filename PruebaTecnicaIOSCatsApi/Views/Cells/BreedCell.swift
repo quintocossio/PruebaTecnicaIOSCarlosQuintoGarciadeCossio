@@ -12,13 +12,14 @@ class BreedCell: UITableViewCell {
     
     let breedCellViewModel: BreedCellViewModel? = nil
     
-    let breedNameLabel = UILabel()
     let breedImageView = UIImageView()
-    let isLikedLabel = UILabel()
+    let stackView = UIStackView()
+    let breedNameLabel = UILabel()
+    let voteTypeImage = UIImageView()
     let dateLabel = UILabel()
     
     static let reuseID = "BreedCell"
-    static let rowHeight:CGFloat = 250
+    static let rowHeight:CGFloat = 150
     
     var onReuse: () -> Void = {}
 
@@ -45,37 +46,72 @@ extension BreedCell {
     private func setup() {
         breedImageView.translatesAutoresizingMaskIntoConstraints = false
         breedImageView.contentMode = .scaleAspectFit
+        breedImageView.clipsToBounds = true
+        
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.spacing = 8
+        stackView.axis = .vertical
+        stackView.alignment = .leading
+        stackView.distribution = .fillEqually
         
         breedNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        breedNameLabel.textAlignment = .center
-        breedNameLabel.font = UIFont.preferredFont(forTextStyle: .title3)
+        breedNameLabel.textAlignment = .left
+        breedNameLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
         breedNameLabel.adjustsFontSizeToFitWidth = true
         breedNameLabel.numberOfLines = 0
         
+        voteTypeImage.translatesAutoresizingMaskIntoConstraints = false
+        voteTypeImage.contentMode = .scaleAspectFit
+        
+        dateLabel.translatesAutoresizingMaskIntoConstraints = false
+        dateLabel.textAlignment = .left
+        dateLabel.font = UIFont.preferredFont(forTextStyle: .caption1)
+        dateLabel.adjustsFontSizeToFitWidth = true
+        dateLabel.numberOfLines = 0
+        
+        stackView.addArrangedSubview(breedNameLabel)
+        stackView.addArrangedSubview(voteTypeImage)
+        stackView.addArrangedSubview(dateLabel)
+        
         contentView.addSubview(breedImageView)
-        contentView.addSubview(breedNameLabel)
+        contentView.addSubview(stackView)
     }
     
     private func layout() {
         
         NSLayoutConstraint.activate([
+            breedImageView.heightAnchor.constraint(equalToConstant: 100),
+            breedImageView.widthAnchor.constraint(equalToConstant: 100),
             breedImageView.topAnchor.constraint(equalToSystemSpacingBelow: topAnchor, multiplier: 1),
             breedImageView.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1),
             bottomAnchor.constraint(equalToSystemSpacingBelow: breedImageView.bottomAnchor, multiplier: 1),
-            breedNameLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: breedImageView.trailingAnchor, multiplier: 2),
-            breedNameLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
+            stackView.leadingAnchor.constraint(equalToSystemSpacingAfter: breedImageView.trailingAnchor, multiplier: 2),
+            stackView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            trailingAnchor.constraint(equalToSystemSpacingAfter: stackView.trailingAnchor, multiplier: 1),
+            voteTypeImage.heightAnchor.constraint(equalToConstant: 20),
+            voteTypeImage.widthAnchor.constraint(equalToConstant: 20),
         ])
     }
+    
 }
 
 extension BreedCell {
     func configureCell(with viewModel: BreedCellViewModel) {
         breedNameLabel.text = viewModel.breedName
-        //breedImageView.loadFrom(URLAddress: viewModel.breedImageUrl!)
-        //dateLabel.text = String(viewModel.date)
-        //isLikedLabel.text = viewModel.isLiked
+        dateLabel.text = viewModel.dateFormatted
+        configureVoteImage(voteType: viewModel.voteType)
         guard let imageUrl = viewModel.breedImageUrl, let url = URL(string: imageUrl) else { return }
         breedImageView.sd_setImage(with: url)
         
+    }
+    
+    func configureVoteImage(voteType: String) {
+        if voteType == "positive"{
+            voteTypeImage.image = UIImage(systemName: "hand.thumbsup.fill")
+            voteTypeImage.tintColor = .green
+        } else {
+            voteTypeImage.image = UIImage(systemName: "hand.thumbsdown.fill")
+            voteTypeImage.tintColor = .red
+        }
     }
 }

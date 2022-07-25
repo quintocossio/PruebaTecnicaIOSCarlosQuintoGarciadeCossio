@@ -52,14 +52,22 @@ extension SavedBreedsViewController {
     
     private func configureTableCells(with breeds: [Cat]) {
         breedCellViewModel = breeds.map({
-            BreedCellViewModel(breedName: $0.name, breedImageUrl: $0.image?.url, date: $0.date, voteType: $0.voteType)
+            BreedCellViewModel(breedName: $0.name, breedImageUrl: $0.image?.url, date: $0.date ?? Date(), voteType: $0.voteType ?? "")
         })
     }
     
     private func loadData() {
-        self.configureTableCells(with: savedBreeds)
-        print(savedBreeds)
-        self.tableView.reloadData()
+        BreedStore.load { [self] result in
+            switch result {
+            case .success(let savedBreeds):
+                configureTableCells(with: savedBreeds)
+                //print(savedBreeds)
+                tableView.reloadData()
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        
     }
 }
 
