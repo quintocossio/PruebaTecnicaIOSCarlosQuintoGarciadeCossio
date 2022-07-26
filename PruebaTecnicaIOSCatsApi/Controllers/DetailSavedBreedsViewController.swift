@@ -29,9 +29,6 @@ class DetailSavedBreedsViewController: UIViewController {
         layout()
     }
     
-    
-
-
 }
 
 extension DetailSavedBreedsViewController {
@@ -106,6 +103,7 @@ extension DetailSavedBreedsViewController {
             stackView.topAnchor.constraint(equalToSystemSpacingBelow: breedImage.bottomAnchor, multiplier: 2),
             stackView.leadingAnchor.constraint(equalToSystemSpacingAfter: contentView.leadingAnchor, multiplier: 2),
             contentView.trailingAnchor.constraint(equalToSystemSpacingAfter: stackView.trailingAnchor, multiplier: 2),
+            contentView.bottomAnchor.constraint(equalToSystemSpacingBelow: stackView.bottomAnchor, multiplier: 2)
             
         ])
         
@@ -113,12 +111,14 @@ extension DetailSavedBreedsViewController {
     }
     
     private func setupScrollView() {
+        
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         contentView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         
         NSLayoutConstraint.activate([
+
             scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             scrollView.widthAnchor.constraint(equalTo: view.widthAnchor),
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -129,6 +129,8 @@ extension DetailSavedBreedsViewController {
             contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
         ])
+        
+        
         
     }
     

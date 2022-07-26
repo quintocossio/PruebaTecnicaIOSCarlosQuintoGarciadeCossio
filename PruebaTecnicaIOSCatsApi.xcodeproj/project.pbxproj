@@ -94,6 +94,7 @@
 		9E50A8552889D28200806479 /* PruebaTecnicaIOSCatsApi */ = {
 			isa = PBXGroup;
 			children = (
+				9EE522A0288F815900F54439 /* Utils */,
 				9E50A87C288A119300806479 /* Delegates */,
 				9E50A8722889E8E300806479 /* Networking */,
 				9E50A86F2889E65800806479 /* Model */,
@@ -103,8 +104,6 @@
 				9E50A85F2889D28500806479 /* Assets.xcassets */,
 				9E50A8612889D28500806479 /* LaunchScreen.storyboard */,
 				9E50A8642889D28500806479 /* Info.plist */,
-				9EA53FAB288B1AC3004F7674 /* LocalState.swift */,
-				9EE5229E288F207600F54439 /* Date+Utils.swift */,
 			);
 			path = PruebaTecnicaIOSCatsApi;
 			sourceTree = "<group>";
@@ -162,6 +161,15 @@
 				9E50A884288A48C900806479 /* BreedCellViewModel.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		9EE522A0288F815900F54439 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				9EA53FAB288B1AC3004F7674 /* LocalState.swift */,
+				9EE5229E288F207600F54439 /* Date+Utils.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		C2E510F2D4DD94AEE689BE0A /* Frameworks */ = {

@@ -17,6 +17,7 @@ class SavedBreedsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationItem.title = "Registros"
         setup()
 
     }
@@ -31,6 +32,7 @@ extension SavedBreedsViewController {
     }
     
     private func setupTableView() {
+        
         tableView.backgroundColor = .tertiarySystemBackground
         tableView.delegate = self
         tableView.dataSource = self
