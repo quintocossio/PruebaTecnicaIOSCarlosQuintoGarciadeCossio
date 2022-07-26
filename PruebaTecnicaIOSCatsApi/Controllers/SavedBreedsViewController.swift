@@ -21,7 +21,6 @@ class SavedBreedsViewController: UIViewController {
 
     }
     
-
 }
 
 extension SavedBreedsViewController {
@@ -61,6 +60,7 @@ extension SavedBreedsViewController {
             switch result {
             case .success(let savedBreeds):
                 configureTableCells(with: savedBreeds)
+                self.savedBreeds = savedBreeds
                 //print(savedBreeds)
                 tableView.reloadData()
             case .failure(let error):
@@ -91,6 +91,8 @@ extension SavedBreedsViewController: UITableViewDataSource {
 
 extension SavedBreedsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let detailSavedBreedsViewController = DetailSavedBreedsViewController()
+        detailSavedBreedsViewController.catBreed = savedBreeds[indexPath.row]
+        self.navigationController?.pushViewController(detailSavedBreedsViewController, animated: false)
     }
 }

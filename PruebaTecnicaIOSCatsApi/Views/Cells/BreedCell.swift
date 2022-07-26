@@ -21,11 +21,10 @@ class BreedCell: UITableViewCell {
     static let reuseID = "BreedCell"
     static let rowHeight:CGFloat = 150
     
-    var onReuse: () -> Void = {}
-
     override func prepareForReuse() {
       super.prepareForReuse()
         breedImageView.image = nil
+        
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -44,6 +43,9 @@ class BreedCell: UITableViewCell {
 extension BreedCell {
     
     private func setup() {
+        
+        selectionStyle = .none
+        
         breedImageView.translatesAutoresizingMaskIntoConstraints = false
         breedImageView.contentMode = .scaleAspectFit
         breedImageView.clipsToBounds = true
@@ -69,15 +71,17 @@ extension BreedCell {
         dateLabel.adjustsFontSizeToFitWidth = true
         dateLabel.numberOfLines = 0
         
+        
+    }
+    
+    private func layout() {
+        
         stackView.addArrangedSubview(breedNameLabel)
         stackView.addArrangedSubview(voteTypeImage)
         stackView.addArrangedSubview(dateLabel)
         
         contentView.addSubview(breedImageView)
         contentView.addSubview(stackView)
-    }
-    
-    private func layout() {
         
         NSLayoutConstraint.activate([
             breedImageView.heightAnchor.constraint(equalToConstant: 100),
@@ -100,8 +104,13 @@ extension BreedCell {
         breedNameLabel.text = viewModel.breedName
         dateLabel.text = viewModel.dateFormatted
         configureVoteImage(voteType: viewModel.voteType)
-        guard let imageUrl = viewModel.breedImageUrl, let url = URL(string: imageUrl) else { return }
-        breedImageView.sd_setImage(with: url)
+        let placeHolderImage = UIImage(systemName: "photo", withConfiguration: UIImage.SymbolConfiguration(textStyle: .title3))
+        guard let imageUrl = viewModel.breedImageUrl, let url = URL(string: imageUrl) else {
+            breedImageView.image = placeHolderImage
+            return
+            
+        }
+        breedImageView.sd_setImage(with: url, placeholderImage: placeHolderImage)
         
     }
     

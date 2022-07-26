@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SDWebImage
 
 class VotingView: UIView{
     
@@ -72,7 +73,12 @@ extension VotingView {
     
     func configureView(with viewModel:VotingViewModel) {
         breedLabel.text = viewModel.breedName
-        guard let imageUrl = viewModel.breedImageUrl, let url = URL(string: imageUrl) else { return }
+        let placeHolderImage = UIImage(systemName: "photo", withConfiguration: UIImage.SymbolConfiguration(textStyle: .title3))
+        guard let imageUrl = viewModel.breedImageUrl, let url = URL(string: imageUrl) else {
+            breedImage.image = placeHolderImage
+            return
+        }
+        breedImage.sd_imageIndicator = SDWebImageActivityIndicator.gray
         breedImage.sd_setImage(with: url)
     }
 }
